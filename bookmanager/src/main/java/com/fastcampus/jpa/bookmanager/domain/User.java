@@ -2,6 +2,7 @@ package com.fastcampus.jpa.bookmanager.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,13 +10,9 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +22,7 @@ import lombok.ToString;
 @Entity //@Entity에는 pk primary key가 꼭 필요함
 public class User { 
 	@Id
-	@GeneratedValue 
+	@GeneratedValue
 	private Long id;
 	@NonNull
 	private String name;
