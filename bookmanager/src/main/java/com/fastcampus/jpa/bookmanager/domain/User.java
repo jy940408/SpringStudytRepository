@@ -2,6 +2,10 @@ package com.fastcampus.jpa.bookmanager.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,8 +22,11 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @Data
 @Builder
+@Entity //@Entity에는 pk primary key가 꼭 필요함
 public class User { 
-
+	@Id
+	@GeneratedValue 
+	private Long id;
 	@NonNull
 	private String name;
 	private String email;
