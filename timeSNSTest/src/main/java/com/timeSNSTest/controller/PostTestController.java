@@ -3,6 +3,8 @@ package com.timeSNSTest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.timeSNSTest.domain.User;
 import com.timeSNSTest.repository.UserRepository;
 
-@RestController
+@Controller
 @RequestMapping("/timep")
 public class PostTestController {
 	
@@ -46,14 +48,16 @@ public class PostTestController {
 	}
 	
 	@GetMapping("/list.do")
-	public List<User> posttoget() {
+	public String posttoget(Model model) {
 		
 		List<User> user = userRepository.findAll();
 		
 		System.out.println("/list.do 값");
 		user.forEach(System.out::println);
 		
-		return user;
+		model.addAttribute("user", user);
+		
+		return "TestPage";
 	}
 	
 }

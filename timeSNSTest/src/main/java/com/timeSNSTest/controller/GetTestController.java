@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.timeSNSTest.domain.Member;
 import com.timeSNSTest.domain.User;
+import com.timeSNSTest.repository.MemberRepository;
 import com.timeSNSTest.repository.UserRepository;
 
 @RestController
@@ -16,6 +18,9 @@ public class GetTestController {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private MemberRepository memberRepository;
 	
 	@GetMapping("/get.do")
 	public User getTest(User user) {
@@ -31,16 +36,17 @@ public class GetTestController {
 	}
 	
 	@GetMapping("/get2.do")
-	public User getTest2(User user) {
+	public String getTest2(Member member) {
 		
-		user.setName("최우석");
-		user.setEmail("cws1234@gmail.com");
+		member.setId("junyoung940408");
+		member.setPwd("s!940408");
+		member.setGrade("USER");
 		
-		userRepository.save(user);	
+		memberRepository.save(member);	
 		System.out.println("/get2.do 값");
-		userRepository.findAll().forEach(System.out::println);
+		memberRepository.findAll().forEach(System.out::println);
 
-		return user;
+		return "redirect:/login";
 		
 	}
 	
