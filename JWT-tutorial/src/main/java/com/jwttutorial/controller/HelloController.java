@@ -1,17 +1,17 @@
 package com.jwttutorial.controller;
 
-import org.springframework.http.*;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@RestController
+@Controller
 @RequestMapping("/api")
 public class HelloController {
 
-	@GetMapping("/hello")
-	public ResponseEntity<String> hello(){
-		return ResponseEntity.ok("hello");
+	@GetMapping("/hello") 
+	public String hello(){
+		return "Login";
 	}
 	
 }

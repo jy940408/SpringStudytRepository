@@ -34,7 +34,7 @@ public class AuthController {
 	
 //	로그인 경로는 '/api/authenticate'이고 Post요청을 받음
 	@PostMapping("/authenticate")
-	public ResponseEntity<TokenDto> aythorize(@Valid @RequestBody LoginDto loginDto) {
+	public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 //		LoginDto의 username, password를 파라미터로 받고 이를 이용해 UsernamePasswordAuthenticationToken을 생성
 		UsernamePasswordAuthenticationToken authenticationToken = 
 				new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
@@ -42,7 +42,7 @@ public class AuthController {
 //		CustomUserDetailsService의 loadUserByUsername 메소드가 실행 됨.
 		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
-		//		Authentication 객체를 생성하고 이를 SecurityContext에 저장
+//		Authentication 객체를 생성하고 이를 SecurityContext에 저장
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 //		Authentication 객체를 createToken 메소드를 통해서 JWT Token을 생성함		
