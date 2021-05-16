@@ -33,7 +33,7 @@ public class AuthController {
 	}
 	
 //	로그인 경로는 '/api/authenticate'이고 Post요청을 받음
-	@PostMapping("/authenticate")
+	@PostMapping(path = "/authenticate")
 	public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
 //		LoginDto의 username, password를 파라미터로 받고 이를 이용해 UsernamePasswordAuthenticationToken을 생성
 		UsernamePasswordAuthenticationToken authenticationToken = 

@@ -13,10 +13,6 @@
 			alert(beforeName);
 			alert(beforePass);
 			
-			var beforeJson = '{"username": "' + beforeName + '", "password": "' + beforePass + '"}';
-			
-			alert(beforeJson);
-			
 			var form = document.createElement('form');
 			form.setAttribute('method', 'post');
 			form.setAttribute('action', '/api/authenticate');
