@@ -9,9 +9,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jwttutorial.dto.LoginDto;
@@ -34,10 +36,10 @@ public class AuthController {
 	
 //	로그인 경로는 '/api/authenticate'이고 Post요청을 받음
 	@PostMapping(path = "/authenticate")
-	public ResponseEntity<TokenDto> authorize(@Valid @RequestBody LoginDto loginDto) {
+	public ResponseEntity<TokenDto> authorize(@RequestParam(required = false) String username, @RequestParam(required = false) String password) {
 //		LoginDto의 username, password를 파라미터로 받고 이를 이용해 UsernamePasswordAuthenticationToken을 생성
 		UsernamePasswordAuthenticationToken authenticationToken = 
-				new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+				new UsernamePasswordAuthenticationToken(username, password);
 //		authenticationToken을 이용해서 Authentication객체를 생성하고, authenticate 메소드가 실행될 때,
 //		CustomUserDetailsService의 loadUserByUsername 메소드가 실행 됨.
 		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
